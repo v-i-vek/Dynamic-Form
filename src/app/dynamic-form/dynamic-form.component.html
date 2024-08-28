@@ -1,1 +1,17 @@
-<p>dynamic-form works!</p>
+<div>
+    <form (ngSubmit)="onsubmit()" [formGroup]="form">
+      @for (question of questions; track question) {
+        <div class="form-row">
+          <app-question [question]="questions"></app-question>
+        </div>
+      }
+      <div class="form-row">
+        <button type="submit" [disabled]="!form.valid">Save</button>
+      </div>
+    </form>
+    
+      <div class="form-row" *ngIf="payload">
+        <strong>Saved the following values</strong><br>{{ payload }}
+      </div>
+    
+  </div>
