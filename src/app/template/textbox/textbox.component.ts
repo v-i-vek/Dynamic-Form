@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-textbox',
@@ -12,23 +12,49 @@ import { FormGroup } from '@angular/forms';
 
 <div [formGroup]="form"  class="col-12 col-md-6 col-lg-3">
 
-  <mat-form-field appearance="outline" class="example-form-field">
-      <mat-label>{{field.name}}</mat-label>
+<div class="container py-2">
+  <div class=col-md-6 col-lg-4>
+
+    <mat-label>{{field.name}}</mat-label>
+    <mat-form-field appearance="outline" class="example-form-field">
       <input matInput placeholder="Placeholder" [formControlName] = "field.name" [id]="field.name" >
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
       
     </mat-form-field>
+  </div>
+</div>
 
 </div>`,
   styleUrls: ['./textbox.component.scss']
 })
-export class TextboxComponent {
-  @Input() field:any = {};
+export class TextboxComponent implements OnInit {
+  @Input() fields:any = {};
   @Input() form!:FormGroup;
-  get isValid() { return this.form.controls[this.field.name].valid; }
-  get isDirty() { return this.form.controls[this.field.name].dirty; }
+  fb!:FormBuilder
+  
+  get isValid() { 
+    for(let field of this.fields) {
+
+    this.form = this.fb.group({field['name']:});
+  
+ 
+ return this.form }
+}
+  get isDirty() {
+     for(let field of this.fields){
+
+        this.form.controls[field.name].dirty; 
+     }
+     return this.form
+    
+    }
+
+
 
   constructor() {
 
+  }
+  ngOnInit(){
+    console.log("this is the value of the text box", this.fields)
   }
 }

@@ -4,14 +4,15 @@
 
     <div class="form-group row" [formGroup]="form">
 
-        <div class="container py-2">
+        <div class="row">
 
-            <mat-label class="col-md-3 form-control-label" [attr.for]="field.label">
+            <mat-label class="form-control-label" [attr.for]="field.label">
                 {{field.label}}
                 <strong class="text-danger" *ngIf="field.required">*</strong>
             </mat-label>
-            <div class="col-md-9" [ngSwitch]="field.type">
-                <div class="row">
+
+            <div class="row" [ngSwitch]="field.type">
+                <div>
                     <app-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-textbox>
 
                 </div>

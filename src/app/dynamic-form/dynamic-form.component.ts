@@ -10,6 +10,9 @@ export class DynamicFormComponent {
   @Output() onSubmit = new EventEmitter();
   @Input() fields: any[] = [];
   form!: FormGroup;
+  textPayload: any = {};
+  textformFields!: FormGroup;
+  textField:any[]=[]
   constructor() { }
 
   ngOnInit() {
@@ -22,7 +25,13 @@ export class DynamicFormComponent {
     let fieldsCtrls :any = {};
     for (let f of this.fields) {
       if (f.type != 'checkbox') {
-        fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required)
+        if(f.type == 'text'){
+          fieldsCtrls[f.name] = new FormControl(f.value || '', Validators.required)
+          this.textField.push(f)
+          this.textformFields = new FormGroup(fieldsCtrls);
+        }
+        
+
       } else {
         let opts :any = {};
         for (let opt of f.options) {

@@ -19,7 +19,7 @@ export class FormFieldBuilderComponent {
   ngOnInit() {
 
     console.log("form-field-builder,  field",this.field)
-    console.log("form-field-builder,   form",this.form)
+    // console.log("form-field-builder,   form",this.form)
   }
 
 

@@ -23,6 +23,13 @@ export class AppComponent {
     },
     {
       type: 'text',
+      name: 'userName',
+      label: 'User Name',
+      value: '',
+      required: true,
+    },
+    {
+      type: 'text',
       name: 'lastName',
       label: 'Last Name',
       value: '',
@@ -82,6 +89,7 @@ export class AppComponent {
       fields: new FormControl(JSON.stringify(this.fields))
     })
     this.unsubcribe = this.form.valueChanges.subscribe((update) => {
+      
       console.log(update);
       this.fields = JSON.parse(update.fields);
     });
