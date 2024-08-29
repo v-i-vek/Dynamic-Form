@@ -92,6 +92,7 @@ export class AppComponent {
   }
 
   getFields() {
+    // console.log(this.fields)
     return this.fields;
   }
 

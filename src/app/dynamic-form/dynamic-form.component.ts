@@ -13,6 +13,12 @@ export class DynamicFormComponent {
   constructor() { }
 
   ngOnInit() {
+
+    // console.log("======>", this.fields)
+
+
+
+
     let fieldsCtrls :any = {};
     for (let f of this.fields) {
       if (f.type != 'checkbox') {

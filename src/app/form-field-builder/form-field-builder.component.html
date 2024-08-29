@@ -1,14 +1,39 @@
-<div class="form-group row" [formGroup]="form">
-    <label class="col-md-3 form-control-label" [attr.for]="field.label">
-      {{field.label}}
-      <strong class="text-danger" *ngIf="field.required">*</strong>
-    </label>
-    <div class="col-md-9" [ngSwitch]="field.type">
-      <app-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-textbox>
-      <app-dropdown *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
-      <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></app-checkbox>
-      <app-radio *ngSwitchCase="'radio'" [field]="field" [form]="form"></app-radio>
-      <!-- <app-file *ngSwitchCase="'file'" [field]="field" [form]="form"></app-file> -->
-      <div class="alert alert-danger my-1 p-2 fadeInDown animated" *ngIf="!isValid && isDirty">{{field.label}} is required</div>
+<div class="mx-lg-5 ">
+
+
+
+    <div class="form-group row" [formGroup]="form">
+
+        <div class="container py-2">
+
+            <mat-label class="col-md-3 form-control-label" [attr.for]="field.label">
+                {{field.label}}
+                <strong class="text-danger" *ngIf="field.required">*</strong>
+            </mat-label>
+            <div class="col-md-9" [ngSwitch]="field.type">
+                <div class="row">
+                    <app-textbox *ngSwitchCase="'text'" [field]="field" [form]="form"></app-textbox>
+
+                </div>
+                <div class="row">
+                    <app-dropdown *ngSwitchCase="'dropdown'" [field]="field" [form]="form"></app-dropdown>
+
+                </div>
+
+                <div class="row">
+
+                    <app-checkbox *ngSwitchCase="'checkbox'" [field]="field" [form]="form"></app-checkbox>
+
+                </div>
+                <div class="row">
+
+                    <app-radio *ngSwitchCase="'radio'" [field]="field" [form]="form"></app-radio>
+
+                </div>
+                <!-- <app-file *ngSwitchCase="'file'" [field]="field" [form]="form"></app-file> -->
+                <div class="alert alert-danger my-1 p-2 fadeInDown animated" *ngIf="!isValid && isDirty">{{field.label}}
+                    is required</div>
+            </div>
+        </div>
     </div>
-  </div>
+</div>

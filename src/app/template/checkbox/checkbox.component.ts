@@ -3,7 +3,18 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
+  template: `
+  <div [formGroup]="form">
+    <div [formGroupName]="field.name" >
+      <div *ngFor="let opt of field.options" class="form-check form-check">
+      <label class="form-check-label">
+         <input [formControlName]="opt.key" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+         {{opt.label}}</label>
+      </div>
+    </div>
+
+  </div>
+ `,
   styleUrls: ['./checkbox.component.scss']
 })
 export class CheckboxComponent {
