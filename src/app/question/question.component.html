@@ -1,21 +1,32 @@
 <div [formGroup]="form">
-    <label [attr.for]="question.key">{{ question.label }}</label>
-    <div>
-      @switch (question.controlType) {
-        @case ('textbox') {
-          <input [formControlName]="question.key" [id]="question.key" [type]="question.type">
-        } @case ('dropdown') {
-          <select [id]="question.key" [formControlName]="question.key">
-          @for (opt of question.options; track opt) {
-            <option [value]="opt.key">{{ opt.value }}</option>
-          }
-          </select>
-        }
-      }
-    </div >
-    <!-- @if (!isValid) {<div class="errorMessage">{{ question.label }} is required</div>} -->
-     
-     <div *ngIf="!isValid">
-        <div class="errorMessage">{{ question.label }} is required</div>
-     </div>
+    <!-- <label [attr.for]="question.key">{{ question.label }}</label> -->
+    <div [ngSwitch]="question.controlType">
+      <!-- For textbox control -->
+             <div *ngSwitchCase="'textbox'">
+                 <mat-form-field appearance="outline"  >
+                     <mat-label>{{question.label}}</mat-label>
+                     <input matInput placeholder={{question.label}}
+                     formControlName={{question.key}}
+                     [id]="question.key"
+                     [type]="question.type" >
+                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                    </mat-form-field>
+                </div>      
+      <!-- For dropdown control -->
+       <div *ngSwitchCase="'dropdown'">
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let opt of question.options" [value]="opt.key">
+                {{opt.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+       </div>
+
+    </div>
+    <div *ngIf="!form.get(question.key)?.valid && form.get(question.key)?.touched" class="errorMessage">
+      {{ question.label }} is required
+    </div>
   </div>
+  
